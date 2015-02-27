@@ -2,11 +2,7 @@ package com.pcl_solutions.maven.wagons.rsync_maven_wagon;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.Process;
-import java.lang.Runtime;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -158,7 +154,7 @@ public class RsyncWagon implements Wagon {
   public void putDirectory(File sourceDirectory, String destinationDirectory)
   {
     try {
-      File remotePath = new File("target/rsync/"+path);
+      File remotePath = new File("target/rsync/"+path+File.separator+destinationDirectory);
       remotePath.mkdirs();
       runRsync("target/rsync/", host+":/", Arrays.asList("-rd", "--progress"));
       runRsync(
